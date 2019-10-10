@@ -2,6 +2,8 @@ package paristech
 
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.{DataFrame, SparkSession}
+import org.apache.spark.sql.functions.udf
+import org.apache.spark.sql.functions._
 
 object Preprocessor {
 
@@ -27,6 +29,8 @@ object Preprocessor {
       .config(conf)
       .appName("TP Spark : Preprocessor")
       .getOrCreate()
+
+    import spark.implicits._  // <-- Add This
 
     /*******************************************************************************
       *
@@ -85,6 +89,105 @@ object Preprocessor {
       .select("goal", "backers_count", "final_status")
       .describe()
       .show
+
+    // On supprime la colonne 'disable_communication' parce que la grande majorité de ces valeurs sont 'falses'
+    val df2: DataFrame = dfCasted.drop("disable_communication")
+
+    // pour enlever les données du futur
+    // on retire les colonnes backers_count et state_changed_at
+
+    val dfNoFutur: DataFrame = df2.drop("backers_count", "state_changed_at")
+
+    //Fonction pour nettoyer la colonne 'country'
+    def cleanCountry(country: String, currency: String): String = {
+      if (country == "False")
+        currency
+      else
+        country
+    }
+
+    //Fonction pour nettoyer la colonne 'currency'
+    def cleanCurrency(currency: String): String = {
+      if (currency != null && currency.length != 3)
+        null
+      else
+        currency
+    }
+
+    //On cree des UDF
+    val cleanCountryUdf = udf(cleanCountry _)
+    val cleanCurrencyUdf = udf(cleanCurrency _)
+
+    //Dataframe avec les colones 'country', et 'currency' nettoyées
+    val dfCountry: DataFrame = dfNoFutur
+      .withColumn("country2", cleanCountryUdf($"country", $"currency"))
+      .withColumn("currency2", cleanCurrencyUdf($"currency"))
+      .drop("country", "currency")
+
+    //Convertion des colonnes dates en timeStamp
+    val dfDate_tmsp: DataFrame = dfCountry
+      .withColumn("launched_at", from_unixtime($"launched_at"))
+      .withColumn("created_at", from_unixtime($"created_at"))
+      .withColumn("deadline", from_unixtime($"deadline"))
+
+    //Calcul des nouvelles colonnes 'hours_prepa', 'days_campaign'
+    val dfDate: DataFrame = dfDate_tmsp
+      .withColumn("days_campaign", datediff($"deadline", $"launched_at"))
+      .withColumn("hours_prepa", datediff($"launched_at", $"created_at"))
+      .drop("deadline", "launched_at", "created_at")
+
+    // On transfrome tous les caracteres des colonnes textes en minuscules
+    // et on les concatene en une seule colonne
+    val dfText: DataFrame = dfDate
+      .withColumn("name", lower($"name"))
+      .withColumn("desc", lower($"desc"))
+      .withColumn("keywords", lower($"keywords"))
+      .withColumn("name_desc", concat($"name", lit(" "), $"desc"))
+      .withColumn("text", concat($"name_desc", lit(" "), $"keywords"))
+      .drop("name", "desc", "keywords", "name_desc")
+
+
+    //Fonction pour nettoyer les valeurs nulles des colonnes
+    // 'days_campaign', 'hours_prepa' et 'goal'
+    def clean_null_int(int: Int): Int = {
+      if (int ==null ) // or int isNaN ?
+        -1
+      else
+        int
+    }
+
+    //Fonction pour nettoyer les valeurs nulles des colonnes
+    // 'country2', 'currency2'
+    def clean_null_string(string: String): String = {
+      if (string == null)
+        "unknown"
+      else
+        string
+    }
+
+    //On cree des UDF
+    val clean_null_intUdf = udf(clean_null_int _)
+    val clean_null_stringUdf = udf(clean_null_string _)
+
+    //On nettoie les valeurs null dans le dataframe
+    val dfClean: DataFrame = dfText
+      .withColumn("days_campaign2", clean_null_intUdf($"days_campaign"))
+      .withColumn("hours_prepa2", clean_null_intUdf($"hours_prepa"))
+      .withColumn("goal2", clean_null_intUdf($"goal"))
+      .withColumn("country3", clean_null_stringUdf($"country2"))
+      .withColumn("currency3", clean_null_stringUdf($"currency2"))
+      .drop("days_campaign", "hours_prepa", "goal","country2", "currency2")
+
+    //On sauvegarde le dataframe propre
+    dfClean.write.parquet("./data/dfClean")
+
+    //Probleme au niveau des monaies ?
+    // dfClean.groupBy("currency3").count.orderBy($"count".desc).show(100)
+
+    //Probleme au niveau des pays ?
+    //dfClean.groupBy("country3").count.orderBy($"count".desc).show(100)
+
+    //dfClean.groupBy("hours_prepa2").count.orderBy($"count".desc).show(100)
 
   }
 }
