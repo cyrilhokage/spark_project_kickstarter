@@ -52,15 +52,39 @@ object Preprocessor {
   *
   ********************************************************************************/
 
-    val df: DataFrame = spark
+    val df:DataFrame=spark
       .read
       .option("header", true) // utilise la première ligne du (des) fichier(s) comme header
       .option("inferSchema", "true") // pour inférer le type de chaque colonne (Int, String, etc.)
-      .csv("/cal/homes/cnouboue/Desktop/TP_SPARK_PROJET/TP2_PROJET/spark_project_kickstarter_2019_2020/data/train_clean.csv")
+      .csv("/cal/homes/cnouboue/Desktop/TP_SPARK_PROJET/TP2_PROJET/spark_project_kickstarter/data/train.csv")
 
     println(s"Nombre de lignes : ${df.count}")
     println(s"Nombre de colonnes : ${df.columns.length}")
 
+  /** Affichez un extrait du DataFrame sous forme de tableau :
+    df.show()
+    */
+
+  // df.printSchema()
+
+  // Assignez le type Int aux colonnes qui vous semblent contenir des entiers :
+
+  val dfCasted: DataFrame = df
+    .withColumn("goal", $"goal".cast("Int"))
+    .withColumn("deadline" , $"deadline".cast("Int"))
+    .withColumn("state_changed_at", $"state_changed_at".cast("Int"))
+    .withColumn("created_at", $"created_at".cast("Int"))
+    .withColumn("launched_at", $"launched_at".cast("Int"))
+    .withColumn("backers_count", $"backers_count".cast("Int"))
+    .withColumn("final_status", $"final_status".cast("Int"))
+
+    // dfCasted.printSchema()
+
+    // Affichez une description statistique des colonnes de type Int :
+    dfCasted
+      .select("goal", "backers_count", "final_status")
+      .describe()
+      .show
 
   }
 }
