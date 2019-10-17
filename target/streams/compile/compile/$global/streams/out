@@ -1,4 +1,4 @@
 [0m[[0m[33mwarn[0m] [0m[0m/cal/homes/cnouboue/Desktop/TP_SPARK_PROJET/TP2_PROJET/spark_project_kickstarter/src/main/scala/paristech/Preprocessor.scala:153:15: comparing values of types Int and Null using `==' will always yield false[0m
-[0m[[0m[33mwarn[0m] [0m[0m      if (int == null)[0m
+[0m[[0m[33mwarn[0m] [0m[0m      if (int ==null ) // or int isNaN ?[0m
 [0m[[0m[33mwarn[0m] [0m[0m              ^[0m
 [0m[[0m[33mwarn[0m] [0m[0mone warning found[0m

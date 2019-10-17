@@ -1,7 +1,7 @@
 [0m[[0m[0mdebug[0m] [0m[0mCalculate mappings...[0m
 [0m[[0m[0mdebug[0m] [0m[0mChecking every *.class/*.jar file's SHA-1.[0m
 [0m[[0m[0mdebug[0m] [0m[0mMerging files...[0m
-[0m[[0m[0mdebug[0m] [0m[0mSHA-1: e3dd63a1e465466a406bb433eb6118e5b364f38d[0m
+[0m[[0m[0mdebug[0m] [0m[0mSHA-1: 4de753d9ac8df3b4eb240d00d686a7a0edb7c7fa[0m
 [0m[[0m[0minfo[0m] [0m[0mPackaging /cal/homes/cnouboue/Desktop/TP_SPARK_PROJET/TP2_PROJET/spark_project_kickstarter/target/scala-2.11/spark_project_kickstarter_2019_2020-assembly-1.0.jar ...[0m
 [0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	paristech/Preprocessor$$anonfun$1.class[0m
