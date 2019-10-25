@@ -1,4 +1,8 @@
-[0m[[0m[33mwarn[0m] [0m[0m/cal/homes/cnouboue/Desktop/TP_SPARK_PROJET/TP2_PROJET/spark_project_kickstarter/src/main/scala/paristech/Preprocessor.scala:153:15: comparing values of types Int and Null using `==' will always yield false[0m
-[0m[[0m[33mwarn[0m] [0m[0m      if (int ==null ) // or int isNaN ?[0m
-[0m[[0m[33mwarn[0m] [0m[0m              ^[0m
-[0m[[0m[33mwarn[0m] [0m[0mone warning found[0m
+[0m[[0m[31merror[0m] [0m[0m/cal/homes/cnouboue/Desktop/TP_SPARK_PROJET/TP2_PROJET/spark_project_kickstarter/src/main/scala/paristech/Trainer.scala:200:27: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : org.apache.spark.ml.param.DoubleParam[0m
+[0m[[0m[31merror[0m] [0m[0m required: org.apache.spark.ml.param.Param[AnyVal][0m
+[0m[[0m[31merror[0m] [0m[0mNote: Double <: AnyVal (and org.apache.spark.ml.param.DoubleParam <: org.apache.spark.ml.param.Param[Double]), but class Param is invariant in type T.[0m
+[0m[[0m[31merror[0m] [0m[0mYou may wish to define T as +T instead. (SLS 4.5)[0m
+[0m[[0m[31merror[0m] [0m[0m      .addGrid(count_vect.minDF, Array(50, 70, 90, 95))[0m
+[0m[[0m[31merror[0m] [0m[0m                          ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
