@@ -60,7 +60,7 @@ object Preprocessor {
       .read
       .option("header", true) // utilise la première ligne du (des) fichier(s) comme header
       .option("inferSchema", "true") // pour inférer le type de chaque colonne (Int, String, etc.)
-      .csv("/cal/homes/cnouboue/Desktop/TP_SPARK_PROJET/TP2_PROJET/spark_project_kickstarter/data/train.csv")
+      .csv("data/train.csv")
 
     println(s"Nombre de lignes : ${df.count}")
     println(s"Nombre de colonnes : ${df.columns.length}")
