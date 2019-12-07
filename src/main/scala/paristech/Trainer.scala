@@ -146,7 +146,8 @@ object Trainer {
       .show() */
 
   // Stage 7 & 8 : One-hot encoder
-    val encoder = new OneHotEncoderEstimator()
+      
+   val encoder = new OneHotEncoderEstimator()
       .setInputCols(Array(country_indexer.getOutputCol, currency_indexer.getOutputCol))
       .setOutputCols(Array("country_onehot", "currency_onehot"))
    //   .fit(curr_ind_data)

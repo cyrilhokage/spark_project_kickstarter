@@ -1,8 +1,55 @@
-[0m[[0m[31merror[0m] [0m[0m/cal/homes/cnouboue/Desktop/TP_SPARK_PROJET/TP2_PROJET/spark_project_kickstarter/src/main/scala/paristech/Trainer.scala:200:27: type mismatch;[0m
-[0m[[0m[31merror[0m] [0m[0m found   : org.apache.spark.ml.param.DoubleParam[0m
-[0m[[0m[31merror[0m] [0m[0m required: org.apache.spark.ml.param.Param[AnyVal][0m
-[0m[[0m[31merror[0m] [0m[0mNote: Double <: AnyVal (and org.apache.spark.ml.param.DoubleParam <: org.apache.spark.ml.param.Param[Double]), but class Param is invariant in type T.[0m
-[0m[[0m[31merror[0m] [0m[0mYou may wish to define T as +T instead. (SLS 4.5)[0m
-[0m[[0m[31merror[0m] [0m[0m      .addGrid(count_vect.minDF, Array(50, 70, 90, 95))[0m
+[0m[[0m[31merror[0m] [0m[0m/home/cyrilhokage/desktop/spark_project_kickstarter/src/main/scala/paristech/Trainer.scala:4:25: object ml is not a member of package org.apache.spark[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.apache.spark.ml.classification.LogisticRegression[0m
+[0m[[0m[31merror[0m] [0m[0m                        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/cyrilhokage/desktop/spark_project_kickstarter/src/main/scala/paristech/Trainer.scala:5:25: object ml is not a member of package org.apache.spark[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.apache.spark.ml.evaluation.{BinaryClassificationEvaluator, RegressionEvaluator}[0m
+[0m[[0m[31merror[0m] [0m[0m                        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/cyrilhokage/desktop/spark_project_kickstarter/src/main/scala/paristech/Trainer.scala:6:25: object ml is not a member of package org.apache.spark[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.apache.spark.ml.feature.{CountVectorizer, CountVectorizerModel, IDF, OneHotEncoderEstimator, RegexTokenizer, StopWordsRemover, StringIndexer, VectorAssembler, VectorIndexer}[0m
+[0m[[0m[31merror[0m] [0m[0m                        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/cyrilhokage/desktop/spark_project_kickstarter/src/main/scala/paristech/Trainer.scala:7:25: object ml is not a member of package org.apache.spark[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.apache.spark.ml.tuning.{CrossValidator, ParamGridBuilder, TrainValidationSplit}[0m
+[0m[[0m[31merror[0m] [0m[0m                        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/cyrilhokage/desktop/spark_project_kickstarter/src/main/scala/paristech/Trainer.scala:9:25: object ml is not a member of package org.apache.spark[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.apache.spark.ml.{Pipeline, PipelineModel}[0m
+[0m[[0m[31merror[0m] [0m[0m                        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/cyrilhokage/desktop/spark_project_kickstarter/src/main/scala/paristech/Trainer.scala:59:25: not found: type RegexTokenizer[0m
+[0m[[0m[31merror[0m] [0m[0m    val tokenizer = new RegexTokenizer()[0m
+[0m[[0m[31merror[0m] [0m[0m                        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/cyrilhokage/desktop/spark_project_kickstarter/src/main/scala/paristech/Trainer.scala:69:27: not found: type StopWordsRemover[0m
+[0m[[0m[31merror[0m] [0m[0m    val sw_remover  = new StopWordsRemover()[0m
 [0m[[0m[31merror[0m] [0m[0m                          ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[31merror[0m] [0m[0m/home/cyrilhokage/desktop/spark_project_kickstarter/src/main/scala/paristech/Trainer.scala:79:26: not found: type CountVectorizer[0m
+[0m[[0m[31merror[0m] [0m[0m    val count_vect = new CountVectorizer()[0m
+[0m[[0m[31merror[0m] [0m[0m                         ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/cyrilhokage/desktop/spark_project_kickstarter/src/main/scala/paristech/Trainer.scala:105:19: not found: type IDF[0m
+[0m[[0m[31merror[0m] [0m[0m    val idf = new IDF().setInputCol("features").setOutputCol("tf_idf")[0m
+[0m[[0m[31merror[0m] [0m[0m                  ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/cyrilhokage/desktop/spark_project_kickstarter/src/main/scala/paristech/Trainer.scala:122:31: not found: type StringIndexer[0m
+[0m[[0m[31merror[0m] [0m[0m    val country_indexer = new StringIndexer()[0m
+[0m[[0m[31merror[0m] [0m[0m                              ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/cyrilhokage/desktop/spark_project_kickstarter/src/main/scala/paristech/Trainer.scala:136:32: not found: type StringIndexer[0m
+[0m[[0m[31merror[0m] [0m[0m    val currency_indexer = new StringIndexer()[0m
+[0m[[0m[31merror[0m] [0m[0m                               ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/cyrilhokage/desktop/spark_project_kickstarter/src/main/scala/paristech/Trainer.scala:149:23: not found: type OneHotEncoderEstimator[0m
+[0m[[0m[31merror[0m] [0m[0m    val encoder = new OneHotEncoderEstimator()[0m
+[0m[[0m[31merror[0m] [0m[0m                      ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/cyrilhokage/desktop/spark_project_kickstarter/src/main/scala/paristech/Trainer.scala:161:32: not found: type VectorAssembler[0m
+[0m[[0m[31merror[0m] [0m[0m    val featureAssembler = new VectorAssembler().setInputCols(featureCols)[0m
+[0m[[0m[31merror[0m] [0m[0m                               ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/cyrilhokage/desktop/spark_project_kickstarter/src/main/scala/paristech/Trainer.scala:168:18: not found: type LogisticRegression[0m
+[0m[[0m[31merror[0m] [0m[0m    val lr = new LogisticRegression()[0m
+[0m[[0m[31merror[0m] [0m[0m                 ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/cyrilhokage/desktop/spark_project_kickstarter/src/main/scala/paristech/Trainer.scala:189:24: not found: type Pipeline[0m
+[0m[[0m[31merror[0m] [0m[0m    val pipeline = new Pipeline()[0m
+[0m[[0m[31merror[0m] [0m[0m                       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/cyrilhokage/desktop/spark_project_kickstarter/src/main/scala/paristech/Trainer.scala:196:25: not found: type ParamGridBuilder[0m
+[0m[[0m[31merror[0m] [0m[0m    val paramGrid = new ParamGridBuilder()[0m
+[0m[[0m[31merror[0m] [0m[0m                        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/cyrilhokage/desktop/spark_project_kickstarter/src/main/scala/paristech/Trainer.scala:202:36: not found: type TrainValidationSplit[0m
+[0m[[0m[31merror[0m] [0m[0m    val trainValidationSplit = new TrainValidationSplit()[0m
+[0m[[0m[31merror[0m] [0m[0m                                   ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/cyrilhokage/desktop/spark_project_kickstarter/src/main/scala/paristech/Trainer.scala:204:25: not found: type RegressionEvaluator[0m
+[0m[[0m[31merror[0m] [0m[0m      .setEvaluator(new RegressionEvaluator().setLabelCol("final_status"))[0m
+[0m[[0m[31merror[0m] [0m[0m                        ^[0m
+[0m[[0m[31merror[0m] [0m[0m18 errors found[0m

@@ -17,7 +17,7 @@ sbt assembly || { echo 'Build failed' ; exit 1; }
 
 echo -e "\n --- spark-submit --- \n"
 
-path_to_spark="/cal/homes/cnouboue/Desktop/TP_SPARK_PROJET/spark-2.3.4-bin-hadoop2.7"
+path_to_spark= echo $SPARK_HOME
 
 if [ -n "$2" ]; then path_to_spark=$2; fi
 
