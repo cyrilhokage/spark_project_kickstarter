@@ -17,7 +17,7 @@ sbt assembly || { echo 'Build failed' ; exit 1; }
 
 echo -e "\n --- spark-submit --- \n"
 
-path_to_spark= echo $SPARK_HOME
+path_to_spark="$SPARK_HOME/"
 
 if [ -n "$2" ]; then path_to_spark=$2; fi
 

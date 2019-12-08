@@ -7,7 +7,7 @@
 		revision="1.0"
 		conf="test-internal"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, pom, scala-tool"
-		date="20191207233531"/>
+		date="20191208133105"/>
 	<dependencies>
 		<module organisation="org.apache.hadoop" name="hadoop-aws">
 			<revision name="2.6.0" status="release" pubdate="20141113235249" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="177">
